@@ -21,18 +21,18 @@ var JMRTCPlugin = {
      * @param {Function} success = (res) => { }
      * @param {Function} fail = (error) => { }
      */
-    init: function(params) {
-        var success = function(result) {
-            if (!EventHandlers.hasOwnProperty(result.eventName)) {
-              return;
-            }
+    init: function() {
+      var success = function(result) {
+        if (!EventHandlers.hasOwnProperty(result.eventName)) {
+          return;
+        }
+  
+        for (var index in EventHandlers[result.eventName]) {
+          EventHandlers[result.eventName][index].apply(undefined, [result.value]);
+        }
+      };
       
-            for (var index in EventHandlers[result.eventName]) {
-              EventHandlers[result.eventName][index].apply(undefined, [result.value]);
-            }
-          };
-        
-          exec(success, null, PLUGIN_NAME, "init", [params]);
+      exec(success, null, PLUGIN_NAME, "init", []);
     },
     /**
      * 初始化音视频引擎，初始化完成会回调 cb 函数。
@@ -121,7 +121,7 @@ var JMRTCPlugin = {
     EventHandlers.onCallOutgoing.push(callback);
   },
   removeCallOutgoingListener: function(callback) {
-    var handlerIndex = EventHandlers.onCallOutgoing.indexOf(listener);
+    var handlerIndex = EventHandlers.onCallOutgoing.indexOf(callback);
     if (handlerIndex >= 0) {
       EventHandlers.onCallOutgoing.splice(handlerIndex, 1);
     }
@@ -131,7 +131,7 @@ var JMRTCPlugin = {
     EventHandlers.onCallReceiveInvite.push(callback);
   },
   removeCallReceiveInviteListener: function(callback) {
-    var handlerIndex = EventHandlers.onCallReceiveInvite.indexOf(listener);
+    var handlerIndex = EventHandlers.onCallReceiveInvite.indexOf(callback);
     if (handlerIndex >= 0) {
       EventHandlers.onCallReceiveInvite.splice(handlerIndex, 1);
     }

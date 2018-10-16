@@ -168,8 +168,6 @@ NSMutableDictionary *_jmrtcEventCache;
 
 - (void)init:(CDVInvokedUrlCommand *)command {
   self.callBack = command;
-  NSDictionary * param = [command argumentAtIndex:0];
-  [[JMessageHelper shareInstance] initJMessage:param];
   [self dispatchJMessageCacheEvent];
 }
 
@@ -454,8 +452,7 @@ NSMutableDictionary *_jmrtcEventCache;
 // JMRTC delegate
 
 - (void)onCallOutgoing:(JMRTCSession *)callSession {
-//  [self.bridge.eventDispatcher sendAppEventWithName:kJMRTCCallOutgoing
-//                                               body:[callSession sessionToDictionary]];
+
   CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{
                                                                                                         @"eventName": @"onCallOutgoing",
                                                                                                         @"value": [callSession sessionToDictionary]}];
@@ -466,8 +463,6 @@ NSMutableDictionary *_jmrtcEventCache;
 }
 
 - (void)onCallReceiveInvite:(JMRTCSession *)callSession {
-//  [self.bridge.eventDispatcher sendAppEventWithName:kJMRTCCallReceiveInvite
-//                                               body:[callSession sessionToDictionary]];
   
   CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{
                                                                                                         @"eventName": @"onCallReceiveInvite",
@@ -478,9 +473,7 @@ NSMutableDictionary *_jmrtcEventCache;
 }
 
 - (void)onCallConnecting:(JMRTCSession *)callSession {
-//  [self.bridge.eventDispatcher sendAppEventWithName:kJMRTCCallConnecting
-//                                               body:[callSession sessionToDictionary]];
-  
+
   CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{
                                                                                                         @"eventName": @"onCallConnecting",
                                                                                                         @"value": [callSession sessionToDictionary]}];
@@ -490,8 +483,6 @@ NSMutableDictionary *_jmrtcEventCache;
 }
 
 - (void)onCallConnected:(JMRTCSession *)callSession {
-//  [self.bridge.eventDispatcher sendAppEventWithName:kJMRTCCallConnected
-//                                               body:[callSession sessionToDictionary]];
   
   CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{
                                                                                                         @"eventName": @"onCallConnected",
@@ -502,9 +493,6 @@ NSMutableDictionary *_jmrtcEventCache;
 }
 
 - (void)onCallMemberJoin:(JMSGUser *)joinUser {
-//  [self.bridge.eventDispatcher sendAppEventWithName:kJMRTCCallMemberJoin
-//                                               body:[self userToDic:joinUser]];
-  
   CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{
                                                                                                         @"eventName": @"onCallMemberJoin",
                                                                                                         @"value": [self userToDic:joinUser]}];
@@ -514,10 +502,6 @@ NSMutableDictionary *_jmrtcEventCache;
 }
 
 - (void)onCallDisconnect:(JMRTCSession *)callSession disconnectReason:(JMRTCDisconnectReason)reason {
-//  [self.bridge.eventDispatcher sendAppEventWithName:kJMRTCCallDisconnect
-//                                               body:@{@"resion": [self reasonToString:reason],
-//                                                      @"session": [callSession sessionToDictionary]}];
-  
   CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{
                                                                                                         @"eventName": @"onCallDisconnect",
                                                                                                         @"value": [callSession sessionToDictionary]}];
@@ -527,9 +511,6 @@ NSMutableDictionary *_jmrtcEventCache;
 }
 
 - (void)onCallMemberLeave:(JMSGUser *)leaveUser reason:(JMRTCDisconnectReason)reason {
-//  [self.bridge.eventDispatcher sendAppEventWithName:kJMRTCCallMemberLeave
-//                                               body:@{@"user": [self userToDic:leaveUser], @"reason": [self reasonToString:reason]}];
-  
   CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{
                                                                                                         @"eventName": @"onCallMemberLeave",
                                                                                                         @"value": @{
@@ -543,13 +524,6 @@ NSMutableDictionary *_jmrtcEventCache;
 }
 
 - (void)onCallOtherUserInvited:(NSArray <__kindof JMSGUser *>*)invitedUsers fromUser:(JMSGUser *)fromUser {
-//  NSMutableArray *userDics = @[].mutableCopy;
-//  for (JMSGUser *user in invitedUsers) {
-//    [userDics addObject:[self userToDic:user]];
-//  }
-  
-//  [self.bridge.eventDispatcher sendAppEventWithName:kJMRTCCallOtherUserInvited
-//                                               body:@{@"invitedUsers": userDics, @"fromUser": [self userToDic:fromUser]}];
 
     NSMutableArray *userDics = @[].mutableCopy;
     for (JMSGUser *user in invitedUsers) {
@@ -565,8 +539,6 @@ NSMutableDictionary *_jmrtcEventCache;
 }
 
 - (void)onCallError:(NSError *)error {
-//  [self.bridge.eventDispatcher sendAppEventWithName:kJMRTCCallError
-//                                               body:[error errorToDictionary]];
   
   CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{
                                                                                                         @"eventName": @"onCallError",

@@ -4,7 +4,7 @@
   id="jmrtc-phonegap-plugin"
   version="3.4.3">
 
-    <name>JPush</name>
+    <name>JMRTC</name>
     <description>JMRTC for cordova plugin</description>
     <author>JPush</author>
     <keywords>JMRTC</keywords>
@@ -24,8 +24,8 @@
 
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
-            <feature name="JMessagePlugin">
-                <param name="ios-package" value="JMessagePlugin"/>
+            <feature name="JMRTCPlugin">
+                <param name="ios-package" value="JMRTCPlugin"/>
             </feature>
         </config-file>
 
