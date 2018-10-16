@@ -42,6 +42,14 @@ var JMRTCPlugin = {
     initEngine: function(success, fail) {
         exec(success, fail, PLUGIN_NAME, "initEngine", []);
     },
+
+    /**
+     * 释放实时音视频引擎
+     */
+    releaseEngine: function() {
+        exec(null, null, PLUGIN_NAME, "releaseEngine", []);
+    },
+    
     /**
      * @abstract 发起一个通话
      * @param params = {usernames: [String]} 
