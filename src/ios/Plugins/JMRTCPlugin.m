@@ -219,6 +219,10 @@ NSMutableDictionary *_jmrtcEventCache;
   }];
 }
 
+- (void)releaseEngine:(CDVInvokedUrlCommand *)command {
+  [JMRTCClient releaseEngine];
+}
+
 - (void)startCallUsers:(CDVInvokedUrlCommand *)command {
   NSDictionary * params = [command argumentAtIndex:0];
   

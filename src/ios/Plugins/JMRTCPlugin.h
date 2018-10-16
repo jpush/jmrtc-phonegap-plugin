@@ -19,6 +19,7 @@
 - (void)init:(CDVInvokedUrlCommand *)command;
 
 - (void)initEngine:(CDVInvokedUrlCommand *)command;
+- (void)releaseEngine:(CDVInvokedUrlCommand *)command;
 - (void)startCallUsers:(CDVInvokedUrlCommand *)command;
 - (void)accept:(CDVInvokedUrlCommand *)command;
 - (void)hangup:(CDVInvokedUrlCommand *)command;
